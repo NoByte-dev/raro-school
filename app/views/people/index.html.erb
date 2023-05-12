@@ -1,0 +1,13 @@
+<h2> People </h2>
+
+<%= link_to 'New Person', new_person_path %>
+
+<% @people.each do |person| %>
+    <p>
+      ID: <%= person.id %> <br>
+      Name: <%= person.name %> <br>
+      Age: <%= person.age %> <br>
+      Bio: <%= person.bio %> <br>
+      <%= link_to 'Details', person_path(person) %> <%= link_to 'Edit', edit_person_path(person) %> <%= link_to 'Delete', person_path(person), data: {'turbo-method': :delete, 'turbo-confirm': 'Deseja mesmo deletar esse veículo ?'} %>
+    </p>
+<% end %>

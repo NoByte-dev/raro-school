@@ -1,0 +1,34 @@
+<h2>New Person</h2>
+<% if @person.errors.any? %>
+  <% @person.errors.full_messages.each do |msg| %>
+  <p><%= msg %></p>
+  <% end %>
+<% end %>
+
+<%= form_with model: @person, data: {turbo: false} do |form| %>
+  <div class="justify-content-center">
+    <p>
+      <%= form.label :name, 'Name:' %>
+      <%= form.text_field :name %>
+    </p>
+    <p>
+      <%= form.label :age, 'Age:' %>
+      <%= form.number_field :age %>
+    </p>
+    <p>
+      <%= form.label :gender, 'Gender:' %>
+      <%= form.text_field :gender %>
+    </p>
+    <p>
+      <%= form.label :bio, 'About:' %>
+      <%= form.text_field :bio %>
+    </p>
+    <p>
+      <%= form.label :cpf, 'CPF:' %>
+      <%= form.number_field :cpf %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  </div>
+<% end %>
