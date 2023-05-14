@@ -8,6 +8,6 @@
       Name: <%= person.name %> <br>
       Age: <%= person.age %> <br>
       Bio: <%= person.bio %> <br>
-      <%= link_to 'Details', person_path(person) %> <%= link_to 'Edit', edit_person_path(person) %> <%= link_to 'Delete', person_path(person), data: {'turbo-method': :delete, 'turbo-confirm': 'Deseja mesmo deletar esse veículo ?'} %>
+      <%= link_to 'Details', person_path(person) %> <%= link_to 'Edit', edit_person_path(person) %> <%= link_to 'Delete', person_path(person), data: {'turbo-method': :delete, 'turbo-confirm': 'You sure ?'} %>
     </p>
 <% end %>
