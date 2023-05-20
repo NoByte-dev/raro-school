@@ -8,28 +8,23 @@
   <form>
     <div class="flex justify-center items-center">
       <div class="grid gap-3 mb-3 md:grid-cols-2 w-2/4">
-        <div>
-            <%= form.label :name, 'Name:', class: label_style %>
-            <%= form.text_field :name, class: field_style, placeholder: "Insert Name", required: true %>
+        <div class="relative">
+          <%= form.text_field :name, class: floating_input_style, id: "floating_filled", placeholder: " " %>
+          <label for="floating_filled" class="<%= floating_label_style %>">Floating filled</label> 
         </div>
         <div>
-          <%= form.label :email, 'Email:', class: label_style %>
           <%= form.text_field :email, class: field_style, placeholder: "nome@email.com", required: true %>
         </div>
         <div>
-            <%= form.label :age, 'Age:', class: label_style %>
-            <%= form.text_field :name, class: field_style, placeholder: "Insert Name", required: true %>
+            <%= form.number_field :age, class: field_style, placeholder: "Age", required: true %>
           </div>
         <div>
-            <%= form.label :gender, 'Gender:', class: label_style %>
-            <%= form.text_field :gender, class: field_style, placeholder: "Insert Gender", required: true %>
-        </div>  
-        <div>
-            <%= form.label :bio, 'About:', class: label_style %>
-            <%= form.text_field :bio, class: field_style, placeholder: "Insert About", required: true %>
+          <%= form.select :gender_type, options_for_select([["Masculine", 'masculine'], ["Feminine", 'feminine']]), { include_blank: true }, class: select_style %>
         </div>
         <div>
-            <%= form.label :cpf, 'CPF:', class: label_style %>
+            <%= form.text_field :bio, class: field_style, placeholder: "About you", required: true %>
+        </div>
+        <div>
             <%= form.number_field :cpf, class: field_style, placeholder: "123-456-789-36", required: true, pattern: "[0-9]{3}-[0-9]{3}-[0-9]{3}-[0-9]{2}" %>
         </div>
       </div>
@@ -39,3 +34,12 @@
     </div>
   </form>
 <% end %>
+
+<!-- 
+
+
+
+<div class="relative">
+  <input type="text" id="floating_filled" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+  <label for="floating_filled" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Floating filled</label>
+</div> -->

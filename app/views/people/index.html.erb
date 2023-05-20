@@ -1,11 +1,13 @@
-<h2> People </h2>
+<h2 class="<%= title_style %>">People</h2>
 
-<%= link_to 'New Person', new_person_path %>
+<%= link_to 'New Person', new_person_path, class: submit_style %>
 
 <% @people.each do |person| %>
     <p>
       ID: <%= person.id %> <br>
+      Email: <%= person.email %> <br>
       Name: <%= person.name %> <br>
+      Gender: <%= person.gender_type.titleize %> <br>
       Age: <%= person.age %> <br>
       Bio: <%= person.bio %> <br>
       <%= link_to 'Details', person_path(person) %> <%= link_to 'Edit', edit_person_path(person) %> <%= link_to 'Delete', person_path(person), data: {'turbo-method': :delete, 'turbo-confirm': 'You sure ?'} %>

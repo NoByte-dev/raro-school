@@ -1,54 +1,47 @@
 class PeopleController < ApplicationController
+  before_action :fetch_person, only: %i[show edit update destroy]
+
   def index
     @people = Person.all.order(created_at: :asc)
   end
 
-  def show
-    @person = Person.find(params[:id])
-  end
+  def show; end
 
   def new
     @person = Person.new
   end
 
-  def edit
-    @person = Person.find(params[:id])
-  end
+  def edit; end
 
   def create
     @person = Person.new(person_params)
-    if @person.save
-      redirect_to person_path(@person)
-    else
-      render :new
-    end
+
+    return redirect_to person_path(@person) if @person.save
+
+    render :new
   end
 
   def update
-    @person = Person.find(params[:id])
-    if @person.update(person_params)
-      flash[:success] = "Successfully updated"
-      redirect_to @person
-    else
-      flash[:error] = "Something went wrong"
-      render :edit
-    end
+    return redirect_to person_path(@person) if @person.update(person_params)
+
+    return redirect_to person_path, notice: 'Alterado com sucesso' if @person.update(person_params)
+
+    render :edit
   end
 
   def destroy
-    @person = Person.find(params[:id])
-    if @person.destroy
-      flash[:success] = 'Successfully deleted.'
-      redirect_to person_path
-    else
-      flash[:error] = 'Something went wrong'
-      redirect_to person_path
-    end
+    @person.destroy
+
+    return redirect_to person_path, notice: 'Apagado com sucesso' if @person.destroy
   end
 
   private
 
   def person_params
-    params.require(:person).permit(:name, :age, :gender, :bio, :cpf)
+    params.require(:person).permit(:name, :email, :age, :gender_type, :bio, :cpf)
+  end
+
+  def fetch_person
+    @person = Person.find(params[:id])
   end
 end
